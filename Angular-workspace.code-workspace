@@ -1,0 +1,32 @@
+{
+	"folders": [
+		{
+			"path": "member"
+		},
+		{
+			"path": "helloworld"
+		},
+		{
+			"path": "typescript"
+		},
+		{
+			"path": "webservice"
+		},
+		{
+			"path": "prefinal"
+		},
+		{
+			"path": "BBQ"
+		},
+		{
+			"path": "..\\Bitnami\\wampstack-8.0.13-0\\apache2\\htdocs\\ServiceSearch"
+		},
+		{
+			"path": "practice"
+		},
+		{
+			"path": "Final"
+		}
+	],
+	"settings": {}
+}

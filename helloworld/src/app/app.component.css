@@ -1,0 +1,29 @@
+.setPosition{
+    margin:auto;
+    padding: auto;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    float:right;
+}
+.Logoset{
+    width: 170px; 
+    height: 100px; 
+    margin: auto;
+    
+}
+.bg{
+    background-color: teal;
+}
+.box{
+    background-color: teal;
+    width: 2000px;
+    height: 1000px;
+}
+:host >>> .mystyle{
+    background-color: teal;
+}
+.img{
+    width: 200px;
+    height: 170px;
+}

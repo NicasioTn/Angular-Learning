@@ -1,0 +1,84 @@
+<div class="centerScreen">
+    <p-panel [style]="{width : '1080px'}" class="panel_font">
+        <ng-template pTemplate="header">
+            <strong id="fontTh" style="font-size:20px">ร้านหมูกระทะลุงยิ้ม</strong>
+
+            <div class="time">
+                <strong id="fontTh">
+                    {{date | date :' d MMMM y | HH:mm น.' }}
+                </strong>
+            </div>
+            <div class="btn_lik">
+                <button (click)="goPage1()" pButton icon="pi pi-home " type="button"
+                    class="p-button-rounded p-button-secondary "></button>
+            </div>
+
+        </ng-template>
+        <div align='center'>
+            <strong id="fontTh" style="font-size:22px">รายการใบเสร็จ</strong>
+        </div>
+        <br>
+        <ng-template pTemplate="footer"><strong id="fontTh">{{contact_us}}</strong> </ng-template>
+        <p-splitter [style]="{'height': '700px'}" styleClass="mb-5">
+
+            <ng-template pTemplate>
+                <div class="col flex align-items-center justify-content-center">
+
+                    <p-table [value]="Allbill" responsiveLayout="scroll" selectionMode="sigle">
+                        <ng-template pTemplate="header">
+                            <tr id="fontTh" style="text-align:center">
+                                <th>ใบเสร็จที่</th>
+                                <th>วันที่-เวลา</th>
+                                <th>ราคารวม</th>
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-Allbill>
+                            <tr (click)="showDetail(Allbill.ListofBill)" id="fontTh" [pSelectableRow]="Allbill">
+                                <td>{{Allbill.ListofBill}}</td>
+                                <td>{{Allbill.date}}</td>
+                                <td>{{Allbill.amount}}</td>
+                            </tr>
+                        </ng-template>
+
+                    </p-table>
+
+                </div>
+            </ng-template>
+            <!-- Order Right -->
+            <ng-template pTemplate>
+                <div class="col flex align-items-center justify-content-center">
+
+                    <p-table [value]="Order_bill" responsiveLayout="scroll" selectionMode="sigle">
+                        <ng-template pTemplate="header">
+                            <tr id="fontTh" style="text-align:center">
+                                <th>รายการอาหาร</th>
+                                <th>ราคา</th>
+                                <th>จำนวน</th>
+                                <th>รวม</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-Order_bill>
+                            <tr id="fontTh" [pSelectableRow]="Order_bill">
+                                <td>{{Order_bill.name}}</td>
+                                <td>{{Order_bill.price}}</td>
+                                <td>{{Order_bill.many}}</td>
+                                <td>{{Order_bill.sumBill}}</td>
+                            </tr>
+                        </ng-template>
+
+                    </p-table>
+                    <br>
+                    <div *ngFor="let bill of this.sum">
+
+                        <p id="fontTh" style="text-align: right; margin-right:20px;">
+                            ราคารวมทั้งสิ้น {{bill.amount}}
+                        </p>
+
+                    </div>
+                </div>
+            </ng-template>
+        </p-splitter>
+    </p-panel>
+
+</div>

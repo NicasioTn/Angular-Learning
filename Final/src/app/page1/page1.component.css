@@ -1,0 +1,43 @@
+.centerScreen {
+    position: absolute;
+    top: 2%;
+    left: 15%;
+    margin-left: 0px;
+    font-family: 'Prompt', sans-serif;
+}
+.panel_font{
+    font-family: 'Prompt', sans-serif;
+    font-size : 16px;
+    color : rgba(107, 188, 255, 0.986);
+}
+.spt-appetizer {
+    position: relative;
+    left: 1%;
+    right: 5%;
+}
+
+.btn_lik{
+    position: absolute;
+    right: 5%;
+    size: 50%;
+}
+.time{
+    position: absolute;
+    right: 10%;
+}
+.checkOut{
+    position: absolute;
+    right: 19%;
+}
+
+#fontTh{
+    font-family: 'Mali', cursive;
+    font-size: 18px;
+}
+
+:host>>>.fontPngTh {
+    font-family: 'Mali', cursive;
+    font-size: 18px;
+}
+
+

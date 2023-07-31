@@ -1,0 +1,270 @@
+<div class="centerScreen" >
+    <p-panel [style]="{width : '1080px'}" class="panel_font fontTh">
+        <ng-template pTemplate="header">
+            <strong style="font-size:20px " id="fontTh">ร้านหมูกระทะลุงยิ้ม</strong>
+            <!-- Show time -->
+            <div class="time">
+                <strong id="fontTh">
+                    {{date | date:' d MMMM y | HH:mm น.' }}
+                </strong>
+            </div>
+            <div class="btn_lik">
+                <button (click)="goPage2()" pButton icon="pi pi-th-large " type="button"
+                    class="p-button-rounded p-button-secondary "></button>
+            </div>
+        </ng-template>
+        <!-- Show Every Order -->
+        <ng-template pTemplate="footer"><strong id="fontTh">{{contact_us}}</strong> </ng-template>
+        <p-splitter [style]="{'height': '700px'}" styleClass="mb-5">
+            <ng-template pTemplate>
+                <div class="col flex align-items-center justify-content-center">
+                    <br>
+                    <header style="text-align : center"> <strong id="fontTh" style="font-size:22px;">สั่งอาหาร (Order)</strong> </header><br>
+                    <div class="container">
+                        <div class="spt-appetizer">
+                            <table>
+                                <tr id="fontTh" style="font-size: 17px;" align="center">
+                                    <th>{{detail[0].name}} ({{detail[0].price}} บาท) </th>&nbsp;&nbsp;
+                                    <th>{{detail[1].name}} ({{detail[1].price}} บาท) </th>
+                                </tr>
+                                <br>
+                                <tr>
+                                    <td>
+                                        <p-image (click)="showDialog(0)" src="../assets/Images/Coke.jpg"
+                                            alt="Image" width="230" height="185">
+                                        </p-image>
+
+                                    </td>&nbsp;&nbsp;&nbsp;
+                                    <td>
+                                        <p-image (click)="showDialog(1)"
+                                            src="../assets/Images/Iscream.jpeg" alt="Image" width="230">
+                                        </p-image>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br>
+                        <div class="spt-appetizer">
+                            <table align="center">
+                                <tr id="fontTh" style="font-size: 17px;">
+                                    <th>{{detail[2].name}} ({{detail[2].price}} บาท)</th>&nbsp;&nbsp;&nbsp;
+                                    <th>{{detail[3].name}} ({{detail[3].price}} บาท)</th>
+                                </tr><br>
+                                <tr>
+                                    <td>
+                                        <p-image (click)="showDialog(2)"
+                                            src="../assets/Images/ชุดเดียวเจ็บแต่จบ.jpg" alt="Image" width="230" height="185">
+                                        </p-image>
+                                    </td>&nbsp;&nbsp;&nbsp;
+                                    <td>
+                                        <p-image (click)="showDialog(3)"
+                                            src="../assets/Images/ชุดหรูหราหมาเห่า.jpg" alt="Image" width="230" height="185">
+                                        </p-image>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </ng-template>
+            
+            <!-- Detail of 1 Bill  -->
+            <ng-template  pTemplate>
+                <div class="col flex align-items-center justify-content-center ">
+                    <br>
+                    <header style="text-align : center;"> <strong id="fontTh" style="font-size: 22px">จัดการรายการอาหาร (Manage Order)</strong> </header>
+                    <br>
+                    <p-table [value]="bill" responsiveLayout="scroll" selectionMode="sigle">
+                        <ng-template pTemplate="header">
+                            <tr id="fontTh">
+                                <th>รายการอาหาร</th>
+                                <th>ราคา</th>
+                                <th>จำนวน</th>
+                                <th>รวม</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-bill>
+                            <tr (click)="dialogEdit(bill.oid)" id="fontTh" [pSelectableRow]="bill">
+                                <td>{{bill.name}}</td>
+                                <td>{{bill.price}}</td>
+                                <td>{{bill.many}}</td>
+                                <td>{{bill.sumBill}}</td>
+                            </tr>
+                        </ng-template> 
+                        <ng-template pTemplate="footer">
+                            <tr id="fontTh">
+                                <td colspan="2" class="text-right"></td>
+                                <td>ราคารวมทั้งสิ้น</td>
+                                <td>{{sum}}</td>
+                            </tr>
+                            
+                        </ng-template>
+                    </p-table><br>
+                    
+                    <div *ngIf=" sum == 0 ; else elseBlock"></div>
+                    <ng-template #elseBlock>
+                        <button id="fontTh" pButton (click)="confirmOrder()" icon="pi pi-money-bill" class="btnCheckout"
+                            label="ชำระเงิน (check out)">
+                        </button>
+                    </ng-template>
+                </div>
+            </ng-template>
+             
+        </p-splitter>
+
+        <!-- ------------------------------------------------------------------------------------- -->
+        <!-- Dialog เพิ่ม ลบ จำนวนรายการ -->
+        <p-dialog styleClass="fontPngTh" header="เลือกจำนวน" [(visible)]="display" [draggable]="false" [resizable]="false">
+            <div class="ng-tns-c39-2 p-dialog-content">
+                <div style="padding-top: 5px; text-align: center;" class="ng-tns-c39-2 ng-star-inserted">
+                    <span>
+                        <strong id="fontTh" >{{food}} {{priceShow}} บาท </strong>
+                    </span>
+                </div>
+
+                <div style="text-align: center;" class="ng-tns-c39-2">
+                    <div class="row">
+                        <div class="col my-auto">
+                            <button pbutton type="button" icon="pi pi-minus" (click)="minus()"
+                                class="p-button-rounded p-button p-component p-button-icon-only">
+                                <span class="p-button-icon pi pi-minus" aria-hidden="true">
+                                </span>
+                                <span aria-hidden="true" class="p-button-label">&amp;nbsp;
+                                </span>
+                            </button>
+                        </div>
+
+                        <div class="col my-auto">
+                            <span style="font-size: 48px;" id="fontTh">{{num[food_id]}}</span>
+                        </div>
+
+                        <div class="col my-auto">
+                            <button pbutton type="button" icon="pi pi-plus" (click)="plus()"
+                                class="p-button-rounded p-button p-component p-button-icon-only">
+                                <span class="p-button-icon pi pi-plus" aria-hidden="true">
+                                </span>
+                                <span aria-hidden="true" class="p-button-label">&amp;nbsp;
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <br class="ng-tns-c39-2">
+                <div style="text-align: center;" class="ng-tns-c39-2">
+                    <button pbutton="" type="button" icon="pi pi-check" style="width: 200px;"
+                        class="p-button p-component">
+                        <span class="p-button-icon p-button-icon-left pi pi-check" aria-hidden="true">
+                        </span>
+                        <span class="p-button-label" id="fontTh" (click)="add(food_id, 'add')">เพิ่มรายการ</span>
+                    </button>
+                </div>
+                <br>
+            </div>
+        </p-dialog>
+
+        <!-- Dialog2 ยืนยันการสั่งซื้อของ 1 bill -->
+        <p-dialog styleClass="fontPngTh" header="ยืนยัน" [(visible)]="confirm" [breakpoints]="{'width': '50px'}"
+            [style]="{width: '22vw'}" [draggable]="false" [resizable]="false">
+            <i class="pi pi-exclamation-circle" style="size: 1.5rem;"></i> <p id="fontTh">ยืนยันการชำระค่าอาหาร?</p>
+            <ng-template pTemplate="footer">
+                <p-button  styleClass="fontPngTh" icon="pi pi-times" (click)="confirm=false" label="ยกเลิก" ></p-button>
+                <p-button  styleClass="fontPngTh" icon="pi pi-check" (click)="insert(bill[food_id].oid)" label="ตกลง" ></p-button>
+            </ng-template>
+        </p-dialog>
+
+        <!-- Dialog Show Detail of Bill after check confirm -->
+        <p-dialog styleClass="fontPngTh" header="ใบเสร็จเลขที่ {{(i-1)}} ค่าอาหารทั้งหมด" [(visible)]="checkOut" [breakpoints]="{'width': '50px'}"
+            [style]="{width: '40vw'}" [draggable]="false" [resizable]="false">
+            <p-table [value]="bill" responsiveLayout="scroll" selectionMode="sigle">
+                <ng-template pTemplate="header">
+                    <tr id="fontTh">
+                        <th>รายการอาหาร</th>
+                        <th>ราคา</th>
+                        <th>จำนวน</th>
+                        <th>รวม</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-bill>
+                    <tr  id="fontTh" [pSelectableRow]="bill">
+                        <td>{{bill.name}}</td>
+                        <td>{{bill.price}}</td>
+                        <td>{{bill.many}}</td>
+                        <td>{{bill.sumBill}}</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="footer">
+                    <tr id="fontTh">
+                        <td colspan="2" class="text-right"></td>
+                        <td>ราคารวมทั้งสิ้น</td>
+                        <td>{{sum}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+            <ng-template pTemplate="footer">
+                <p-button styleClass="fontPngTh" (click)="resetMenu()" label="ปิดหน้าต่าง" ></p-button>
+            </ng-template>
+        </p-dialog>
+
+        
+        <!-- Dialog แก้ไขจำนวนรายการอาหาร -->
+        <p-dialog styleClass="fontPngTh" header="เลือกจำนวน" [(visible)]="Editdisplay" [draggable]="false" [resizable]="false">
+            <div class="ng-tns-c39-2 p-dialog-content">
+                <div style="padding-top: 5px; text-align: center;" class="ng-tns-c39-2 ng-star-inserted">
+                    <span>
+                        <strong id="fontTh">{{food}} {{priceShow}} บาท </strong>
+                        <!-- <strong id="fontTh">{{detail[food_id].name}} {{detail[food_id].price}} บาท </strong> -->
+                    </span>
+                </div>
+
+                <div style="text-align: center;" class="ng-tns-c39-2">
+                    <div class="row">
+                        <div class="col my-auto">
+                            <button pbutton type="button" icon="pi pi-minus" (click)="minus()"
+                                class="p-button-rounded p-button p-component p-button-icon-only">
+                                <span class="p-button-icon pi pi-minus" aria-hidden="true">
+                                </span>
+                                <span aria-hidden="true" class="p-button-label">&amp;nbsp;
+                                </span>
+                            </button>
+                        </div>
+
+                        <div class="col my-auto">
+                            <span style="font-size: 48px;" id="fontTh">{{num[food_id]}}</span>
+                        </div>
+
+                        <div class="col my-auto">
+                            <button pbutton type="button" icon="pi pi-plus" (click)="plus()"
+                                class="p-button-rounded p-button p-component p-button-icon-only">
+                                <span class="p-button-icon pi pi-plus" aria-hidden="true">
+                                </span>
+                                <span aria-hidden="true" class="p-button-label">&amp;nbsp;
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <br class="ng-tns-c39-2">
+                <div style="text-align: center;" class="ng-tns-c39-2">
+                    <button pbutton="" type="button" icon="pi pi-check" style="width: 200px;"
+                        class="p-button p-component">
+                        <span class="p-button-icon p-button-icon-left pi pi-check" aria-hidden="true">
+                        </span>
+                        <span class="p-button-label" id="fontTh" (click)="add(food_id, 'edit')">ปรับปรุงรายการ</span>
+                    </button>
+                </div>
+                <br>
+                <div style="text-align: center;" class="ng-tns-c39-2">
+                    <button pbutton (click)="disable()" type="button" icon="pi pi-times"
+                        style="width: 200px; background-color: red;" class="p-button p-component">
+                        <span class="p-button-icon p-button-icon-left pi pi-times" aria-hidden="true">
+                        </span>
+                        <span class="p-button-label" id="fontTh" (click)="deleteMenu(food_id)">ลบรายการ</span>
+                    </button>
+                </div>
+
+            </div>
+        </p-dialog>
+    </p-panel>
+
+</div>

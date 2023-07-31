@@ -1,0 +1,23 @@
+<!-- get text -->
+<!-- <h5>Single</h5>
+<p-dropdown [options]="cities" [(ngModel)]="selectedCity1" 
+    placeholder="Select a City" optionLabel="name" 
+    [showClear]="false" [(ngModel)]="value">
+</p-dropdown>
+<h1>{{value.name}}</h1> -->
+
+<!-- [paginator]="true" is page >> -->
+<div class="card">
+    <p-dataView
+      [value]="cities"
+      [paginator]="true" 
+      [rows]="3"
+      filterBy="name"
+      layout="list">
+      <ng-template let-cities pTemplate="listItem">
+        <div class="card">
+          <p>{{cities.name}}</p>
+        </div>
+      </ng-template>
+    </p-dataView>
+  </div>

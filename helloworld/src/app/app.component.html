@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Components</title>
+</head>
+
+<body>
+    <!-- Card -->
+    <div class="card" [ngStyle]="{backgroundColor:'var(--teal-700)'}">
+        <div class="flex card-container blue-container overflow-hidden">
+            <img src="assets/Lays-Logo.png" class="Logoset">
+            <!-- Avatar image-->
+            <p-avatar class="setPosition" image="assets/Moaw.png" pBadge value="4" severity="danger" size="xlarge">
+            </p-avatar>
+            <p class="setPosition"> Admin : Moawna Lisa <br> id : 10 <br> code : spiderman </p>
+            <button pButton type="button" label="Home"></button>
+            <button pButton type="button" label="New Arrival"></button>
+            <button pButton type="button" label="Timeline"></button>
+            <button pButton type="button" label="Shop"></button>
+            <button pButton type="button" label="Account" class="p-button-secondary"></button>
+            <button pButton type="button" label="Footwear" class="p-button-success"></button>
+            <button pButton type="button" label="News" class="p-button-info"></button>
+            <button pButton type="button" label="Sale" class="p-button-warning"></button>
+            <button pButton type="button" label="Help" class="p-button-help"></button>
+            <button pButton type="button" label="Contact" class="p-button-danger"></button>
+            <button pButton type="button" class="p-button-secondary"><i class="pi pi-spinner pi-spin"
+                    style="font-size: 1rem"></i></button>
+
+        </div>
+    </div>
+
+
+    <!-- split panel  -->
+    <p-splitter [style]="{'height': '300px'}" [minSizes]="[10,20]" layout="Horizontal">
+        <ng-template pTemplate>
+            <div style="margin:auto; padding: 10px 10px 10px 10px">
+                <!-- Upload file -->
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <p-badge value="1" size="large" severity="warning"></p-badge>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <p-badge value="2" size="large" severity="success"></p-badge>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <p-badge value="3" size="large" severity="danger"></p-badge>
+                <p-fileUpload name="myfile[]" url="./upload.php"></p-fileUpload>
+            </div>
+        </ng-template>
+        <ng-template pTemplate>
+            <div style="margin:auto; padding: 10px 10px 10px 10px">
+
+                <p-inplace>
+                    <ng-template pTemplate="display">
+                        <div class="inline-flex align-items-center">
+                            <span class="pi pi-image" style="vertical-align: middle"></span>
+                            <span class="ml-2">View Picture Engineer</span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="content">
+                        <img src="assets/Moaw.png" style="margin-left: 30%; width: 200px; height:170px" alt="Nature">
+                    </ng-template>
+                </p-inplace>
+                <p-message severity="info" text="How is he?" styleClass="mr-2"></p-message>
+                <p-message severity="success" text="Developer" styleClass="mr-2"></p-message>
+                <p-message severity="warn" text="Proplayer" styleClass="mr-2"></p-message>
+                <p-message severity="error" text="Cat Lisa"></p-message>
+
+
+            </div>
+
+
+        </ng-template>
+    </p-splitter>
+
+    <!-- split panel  -->
+    <div [ngStyle]="{backgroundColor:'var(--teal-700)'}">
+        <div style="margin:auto; margin-left:35%; padding: 10px 10px 10px 10px">
+
+            <div class=" flex align-items-center">
+                <!-- Chip -->
+                <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                <p-chip label="Apple" icon="pi pi-apple" styleClass="mr-2"></p-chip>
+                <p-chip label="Facebook" icon="pi pi-facebook" styleClass="mr-2"></p-chip>
+                <p-chip label="Google" icon="pi pi-google" styleClass="mr-2"></p-chip>
+                <p-chip label="Microsoft" icon="pi pi-microsoft" [removable]="true"></p-chip>
+                <div style="margin-left: 5%;">
+                    <h5>Input</h5>
+                    <input id="input" type="text" size="30" pInputText>
+                    <!-- Input box and Badge -->
+                    <h5>Disabled Input</h5>
+                    <input id="disabled-input" pBadge value="can't input" type="text" size="30" pInputText
+                        [disabled]="true" />
+                    <br><br>
+                    <p-button label="Submit" badge="8" styleClass="mr-2" badgeClass="p-badge-danger"></p-button>
+                    <p-button label="Cancel" icon="pi pi-users" styleClass="p-button-danger" badge="8"
+                        badgeClass="p-badge-info" style="margin-left: 7%;">
+                    </p-button>
+                    <br>
+                    <button pButton label="Phone" pStyleClass="@next" toggleClass="p-disabled" class="p-button-secondary"></button>
+                    <input type="text" pInputText class="block mt-3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

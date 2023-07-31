@@ -1,0 +1,64 @@
+<div class="centerScreen">
+    <p-panel [style]="{width : '1080px'}" class="panel_font">
+        <ng-template pTemplate="header">
+            <strong id="fontTh" style="font-size:20px">สถานที่ท่องเที่ยว</strong>
+        </ng-template>
+        <p-dataView #dv [value]="all" [paginator]="true" [rows]="3" filterBy="name" layout="grid">
+            <ng-template pTemplate="gridItem" let-all>
+                <div class="row">
+                    <div class="col-{{i}} ">
+                        <h6 id="fontTh">{{all.lname}} ({{all.name}})</h6>
+                        <img (click)="show(all.lid, all.lname, all.name, all.detail, all.image)" [src]="all.image" [alt]="all.name" style="width:300px; height: 200px;" />
+                        <br>
+                    </div>
+                    <div class="col-{{i}} ">
+                        <h6 id="fontTh">{{all.lname}} ({{all.name}})</h6>
+                        <img (click)="show(all.lid, all.lname, all.name, all.detail, all.image)" [src]="all.image" [alt]="all.name" style="width:300px; height: 200px;" />
+                        <br>
+                    </div>
+                    <div class="col-{{i}} ">
+                        <h6 id="fontTh">{{all.lname}} ({{all.name}})</h6>
+                        <img (click)="show(all.lid, all.lname, all.name, all.detail, all.image)" [src]="all.image" [alt]="all.name" style="width:300px; height: 200px;" />
+                        <br>
+                    </div>
+                    
+                </div>
+            </ng-template>
+
+
+
+
+        </p-dataView>
+        <br>
+        <ng-template pTemplate="footer">
+            <strong id="fontTh">
+                ข้อมูล ณ วันที่ {{date | date :' d MMMM y | HH:mm น.'}}
+            </strong> 
+        </ng-template>
+        
+            <!-- Dialog -->
+        <p-dialog styleClass="fontPngTh" header="{{localName}}" [(visible)]="display" [breakpoints]="{'width': '50px'}"
+            [style]="{width: '40vw', height: '90vh'}" [draggable]="false" [resizable]="false">
+            <p-button [disabled]="true" label="ชื่อสถานที่"></p-button>
+            <input type="text" [style]="{width: '23vw'}" pInputText value="{{localName}}" [(ngModel)]="localName"> 
+            <br><br>
+            <p-button [disabled]="true" label="ประเทศ"></p-button>
+            <p-dropdown [options]="countryAll" [(ngModel)]="selected" [style]="{width: '24vw'}" optionLabel="name"></p-dropdown>
+            <br><br>
+            <p-button [style]="{width: '10vw', height: '9.3vw'}" [disabled]="true" label="รายละเอียด"></p-button>
+            <textarea [rows]="5" [cols]="31"  [(ngModel)]="property" pInputTextarea Resize="false"></textarea>
+            <br><br>
+            <p-button  [disabled]="true" label="รูปภาพ"></p-button>
+            <input [style]="{width: '25vw'}" type="text" pInputText value="{{image}}"> 
+            <br><br>
+            <ng-template pTemplate="footer">
+                <p-button styleClass="fontPngTh" (click)="edit()" label="บันทึก" ></p-button>
+                <p-button styleClass="fontPngTh" (click)="display = false" label="ยกเลิก" ></p-button>
+            </ng-template>
+        </p-dialog>    
+    </p-panel>
+
+
+</div>
+
+
